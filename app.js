@@ -5,7 +5,7 @@ App({
   },
   onLaunch() {
     wx.cloud.init({  
-      env: 'scuttutor-guangdong1-1bf905cb6c6',  
+      env: '',  
       traceUser: true,
     })
     wx.cloud.callFunction({
