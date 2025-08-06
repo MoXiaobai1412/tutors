@@ -1,0 +1,76 @@
+{
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "鲤梦同行",
+  "setting": {
+    "compileHotReLoad": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/mine/allSettings/admin/navigator/navigator",
+          "pathName": "pages/mine/allSettings/admin/navigator/navigator",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/allSettings/admin/administor/administor",
+          "pathName": "pages/mine/allSettings/admin/administor/administor",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/allSettings/admin/administor/administor",
+          "pathName": "pages/mine/allSettings/admin/audit/audit",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/allSettings/allSettings",
+          "pathName": "pages/mine/allSettings/allSettings",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/more/more",
+          "pathName": "pages/more/more",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/message/chat/chat",
+          "pathName": "pages/message/chat/chat",
+          "query": "id=2ad666ce66f575f30cd7e81c24f2cdd5",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "云函数模拟",
+          "pathName": "pages/more/more",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/work/register/register",
+          "pathName": "pages/work/register/register",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/message/message",
+          "pathName": "pages/message/message",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

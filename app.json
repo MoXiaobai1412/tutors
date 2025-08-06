@@ -1,0 +1,72 @@
+{
+  "entryPagePath": "pages/work/work",
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/more/more",
+    "pages/mine/mine",
+    "pages/work/work",
+    "pages/favor/favor",
+    "pages/post/student-info/student-info",
+    "pages/post/teacher-info/teacher-info",
+    "pages/detailPage/teacherPage/teacherPage",
+    "pages/detailPage/studentPage/studentPage",
+    "pages/post/post",
+    "pages/mine/studentUpdatePage/studentUpdatePage",
+    "pages/mine/teacherUpdatePage/teacherUpdatePage",
+    "pages/work/register/register",
+    "pages/mine/allSettings/allSettings",
+    "pages/mine/allSettings/userSettings/userSettings",
+    "pages/message/message",
+    "pages/message/chat/chat",
+    "pages/mine/allSettings/admin/administor/administor",
+    "pages/mine/allSettings/admin/audit/audit",
+    "pages/mine/allSettings/admin/navigator/navigator",
+    "pages/mine/allSettings/admin/institution/institution"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/work/work",
+        "text": "首页",
+        "iconPath": "pics/tabBar/work.png",
+        "selectedIconPath": "pics/tabBar/work-active.png"
+      },
+      {
+        "pagePath": "pages/post/post",
+        "text": "发布",
+        "iconPath": "pics/tabBar/post.png",
+        "selectedIconPath": "pics/tabBar/post-active.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "pics/tabBar/message.png",
+        "selectedIconPath": "pics/tabBar/message-active.png"
+      },
+      {
+        "pagePath": "pages/favor/favor",
+        "text": "收藏",
+        "iconPath": "pics/tabBar/favor.png",
+        "selectedIconPath": "pics/tabBar/favor-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "pics/tabBar/mine.png",
+        "selectedIconPath": "pics/tabBar/mine-active.png"
+      }
+    ],
+    "color": "#bfbfbf",
+    "selectedColor": "#1296db",
+    "backgroundColor": "#ffffff"
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "鲤梦同行",
+    "navigationBarBackgroundColor": "#1296db"
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
