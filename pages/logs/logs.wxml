@@ -1,0 +1,17 @@
+<!--logs.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+<view class="navigate-box">
+网络问题无法登录
+</view>
+<view class="line"></view>
+<view class="navigate-box">
+小程序名：鲤梦同行
+</view>
+<view class="line"></view>
+<view class="navigate-box">
+登录记录：
+</view>
+  <block wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
+    <view class="log-item">{{index + 1}}. {{log.date}}</view>
+  </block>
+</scroll-view>

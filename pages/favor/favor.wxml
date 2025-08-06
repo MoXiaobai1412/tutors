@@ -1,0 +1,21 @@
+<!-- 顶部导航栏 -->
+<!-- 找老师界面 -->
+<scroll-view class="information-big-box" scroll-y wx:if="{{isFindTeacher}}">
+  <view class="big-box" wx:for="{{teacherInformation}}">
+    <view class="delete-button" bind:tap="toDeleteTeacher" data-infoid="{{item._id}}">
+      <image src="../../pics/button/delete.png" style="width: 60rpx;height: 60rpx;" mode=""/>
+    </view>
+    <teacher-box bind:tap="toTeacherPage" data-infoid="{{item._id}}" information="{{item}}"></teacher-box>
+  </view>
+  <view class="container" wx:if="{{teacherInformation.length===0}}" style="color: darkgray;margin-top: 5%;">暂无老师数据，快去收藏吧</view>
+</scroll-view>
+<!-- 找学生界面 -->
+<scroll-view class="information-big-box" wx:if="{{!isFindTeacher}}" scroll-y>
+  <view class="big-box" wx:for="{{studentInformation}}">
+    <view class="delete-button" bind:tap="toDeleteStudent" data-infoid="{{item._id}}">
+      <image src="../../pics/button/delete.png" style="width: 60rpx;height: 60rpx;" mode=""/>
+    </view>
+    <student-box bind:tap="toStudentPage" data-infoid="{{item._id}}" information="{{item}}"></student-box>
+  </view>
+  <view class="container" wx:if="{{studentInformation.length===0}}" style="color: darkgray;margin-top: 5%;">暂无学生数据，快去收藏吧</view>
+</scroll-view>

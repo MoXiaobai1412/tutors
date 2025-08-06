@@ -1,0 +1,53 @@
+<!--pages/work/register/register.wxml-->
+<view class="topic">
+更改信息
+</view>
+<!-- 用户名 -->
+<label>
+<view class="text-box">
+  <view class="information-box">昵称</view>
+  <view style="display: flex;">
+    <input model:value="{{nickName}}" maxlength="8" placeholder="点击输入昵称" type="nickname"/>
+  </view>
+</view>
+<view class="text-box" style="font-size:small;">注:昵称用于聊天使用，如审核未通过则会生成随机昵称</view>
+<view class="line"></view>
+</label>
+<!-- 身份 -->
+<label>
+<view class="text-box">
+  <view class="information-box">身份</view>
+  <radio-group bindchange="">
+    <view style="display: flex;">
+      <radio value="student" model:checked="{{isStudent}}" disabled="{{!canChangeIdentity}}"/>学生/家长<view style="width: 40rpx;"></view>
+      <radio value="teacher" model:checked="{{!isStudent}}" disabled="{{!canChangeIdentity}}"/>家教老师
+    </view>
+  </radio-group>
+</view>
+<view class="text-box" style="font-size:small;display: inline-block;">
+<view>可更新时间为 {{identityUpdateTime[0]}}年{{identityUpdateTime[1]}}月{{identityUpdateTime[2]}}日</view>
+<view>注：身份更新间隔为90天，如有错选请在“设置→反馈”联系管理员或注销账户</view>
+
+</view>
+
+<view class="line"></view>
+</label>
+<!-- 地区 -->
+<label>
+<view class="text-box">
+  <view class="information-box">地区</view>
+  <picker mode="region" level="region" model:value="{{region}}">
+    {{region[0]}} {{region[1]}} {{region[2]}}
+  </picker>
+</view>
+<view class="line"></view>
+</label>
+<!-- 提交 -->
+<label>
+  <view style="display: flex;margin-top: 10rpx;margin-left: 2.5%;">
+    <checkbox model:checked="{{isInformationChecked}}"/>授权以上信息
+  </view>
+  <view class="button-outer-box">
+    <button type="{{isInformationChecked ? 'primary' : 'default'}}" disabled="{{isInformationChecked ? '' : 't'}}" bind:tap="toSubmit">提交</button>
+  </view>  
+</label>

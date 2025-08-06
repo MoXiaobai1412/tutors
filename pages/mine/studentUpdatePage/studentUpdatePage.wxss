@@ -1,0 +1,108 @@
+/* pages/work/student-info/student-info.wxss */
+.line {
+  width: 95%;
+  height: 2rpx;
+  margin-left: 2.5%;
+  background-color: #d2d2d2;
+}
+.topic {
+  height: 80rpx;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  background-color: rgb(172, 231, 231);
+  border-top: black 2rpx solid;
+}
+.text-box {
+  display: flex;
+  width: 95%;
+  height: auto;
+  margin-left: 2.5%;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+}
+.text-box-warning {
+  display: flex;
+  width: 95%;
+  height: auto;
+  margin-left: 2.5%;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+  background-color: lightcoral;
+}
+.information-box {
+  width: 150rpx;
+}
+.input-box {
+  height: 50rpx;
+  width: 300rpx;
+  border: gray 2rpx solid;
+  border-radius: 20rpx;
+}
+.region-detail {
+  border-bottom: gray 2rpx solid;
+}
+.detail-box {
+  border: gray 2rpx solid;
+  width: 500rpx;
+  height: 200rpx;
+  border-radius: 20rpx;
+  padding: 20rpx;
+}
+.QR-box {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  width: 120rpx;
+  margin-left: 2.5%;
+  height: 120rpx;
+  background-color: #dddddd;
+  margin-bottom: 20rpx;
+}
+.scool-grade {
+  width: 200rpx;
+  margin-bottom: 20rpx;
+  z-index: 20;
+}
+.grade-box {
+  display: flex;
+  flex-wrap: wrap;
+  width: 600rpx;
+  z-index: 20;
+}
+.week-box{
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  width: 100rpx;
+  height: 60rpx;
+  background-color: rgb(255, 255, 255);
+}
+.week-day-box {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  width: 60rpx;
+  height: 60rpx;
+  background-color: rgb(255, 245, 231);
+}
+.week-day-box-active {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  width: 60rpx;
+  height: 60rpx;
+  background-color: #9bdcff;
+}
+
+.button-outer-box {
+  align-items: center;
+}
+.button-box {
+  background-color: darkgrey;
+}

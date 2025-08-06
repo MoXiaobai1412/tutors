@@ -1,0 +1,65 @@
+<!--pages/work/teacher-box/teacher-box.wxml--> 
+<view style="position: relative;">
+  <view class="logo">
+    <image style="width: 70rpx;height: 70rpx;" src="../../pics/logo/teacher.png" mode=""/>
+  </view>
+  <view class="outer-box">
+  <!-- 年级 -->
+    <view class="grade">
+      <text style="font-size: medium;">{{information.grade[0]}} {{information.grade[1]}}</text>
+    </view>
+  <!-- 学科 -->
+    <scroll-view class="subject-box" scroll-y>
+      <view class="subject" wx:for="{{information.subject}}">
+        {{item}}
+      </view>
+    </scroll-view>
+    
+  <!-- 地点 -->
+    <view class="position">
+      <text style="font-size: 30rpx;color: rgb(121, 121, 121);">{{information.position[1]}} {{information.position[2]}}</text>
+    </view>
+  <!-- 发布时间 -->
+    <view class="postDate">
+      <text style="font-size: 30rpx;color: rgb(121, 121, 121);">{{formatedDate}}</text>
+    </view>
+  <!-- 薪资 -->
+    <view class="salary">
+      <text style="color: red;font-size: 50rpx;">{{information.salary.amount}}/{{information.salary.type}}</text>
+    </view>
+  <!-- 时间 -->
+    <view class="time-outer-box">
+      <!-- 星期 -->
+      <view style="display: flex;font-size: 32rpx;">
+        <text space="nbsp">星期</text>
+        <view wx:for="{{information.time.week}}" wx:if="{{item}}"><text>{{allWeek[index]}}</text></view>
+      </view>
+      <!-- 时分 -->
+      <view style="display: flex;font-size: 32rpx;flex-wrap: wrap;">
+        <!-- 时段1 -->
+        <view style="width: 50%;">
+          <text>{{timesFormat[0]}}</text>
+          ~
+          <text>{{timesFormat[1]}}</text>
+        </view>
+        <!-- 时段2 -->
+        <view style="width: 50%;" wx:if="{{information.time.time.number>1}}">
+          ;
+          <text>{{timesFormat[2]}}</text>
+          ~
+          <text>{{timesFormat[3]}}</text>
+        </view>
+        <!-- 时段3 -->
+        <view style="width: 50%;" wx:if="{{information.time.time.number>2}}">
+          <text>{{timesFormat[4]}}</text>
+          ~
+          <text>{{timesFormat[5]}}</text>
+        </view>
+      </view>
+
+    </view>
+
+
+
+  </view>
+</view>

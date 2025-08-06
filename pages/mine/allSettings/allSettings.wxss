@@ -1,0 +1,28 @@
+/* pages/mine/allSettings/allSettings.wxss */
+.line {
+  width: 95%;
+  margin-left: 2.5%;
+  height: 2rpx;
+  background-color: darkgrey;
+}
+.logo {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 2%;
+}
+.navigate-box {
+  display: flex;
+  font-size: 45rpx;
+  color: #707070;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 7%;
+  width: 100%;
+}
+.information-box{
+  font-size: 40rpx;
+  margin-left: 8%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  color: #707070;
+}

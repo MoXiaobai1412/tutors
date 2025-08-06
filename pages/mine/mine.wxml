@@ -1,0 +1,95 @@
+<!-- 顶部导航栏 -->
+<view class="number-box" wx:if="{{isFindTeacher}}" style="font-size: small;">
+  已发布：
+  <text>学生人数 {{studentNum}} / {{maxNumber.student}}；</text>
+  <text>老师人数 {{teacherNum}} / {{maxNumber.teacher}}</text>
+  
+</view>
+<view class="number-box" wx:else style="font-size: small;">
+  已发布：
+  <text>老师人数 {{teacherNum}} / {{maxNumber.teacher}}；</text>
+  <text>学生人数 {{studentNum}} / {{maxNumber.student}}</text>
+</view>
+<!-- 找老师界面 -->
+<scroll-view class="information-big-box" scroll-y wx:if="{{!isFindTeacher}}">
+<view class="big-box" wx:for="{{teacherInformation}}">  
+  <view class="delete-button" bind:tap="toDeleteTeacher" data-infoid="{{item._id}}">
+      <image src="../../pics/button/delete.png" style="width: 60rpx;height: 60rpx;" mode=""/>
+  </view>
+  <view class="condition" wx:if="{{item.checked===0}}">
+      <image src="/pics/logo/checking.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+  </view>
+  <view class="condition" wx:if="{{item.checked===2}}">
+      <image src="/pics/logo/pass.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+  </view>
+  <view class="condition" wx:if="{{item.checked===1}}">
+      <image src="/pics/logo/unpass.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+  </view>
+  <view>
+    <teacher-box bind:longpress="getTeacherCode" bind:tap="toTeacherPage" data-infoid="{{item._id}}" information="{{item}}"></teacher-box>
+  </view>
+</view>
+<view class="big-box" wx:for="{{studentInformation}}">  
+    <view class="delete-button" bind:tap="toDeleteStudent" data-infoid="{{item._id}}">
+        <image src="../../pics/button/delete.png" style="width: 60rpx;height: 60rpx;" mode=""/>
+    </view>
+    <view>
+      <student-box bind:longpress="getStudentCode" bind:tap="toStudentPage" data-infoid="{{item._id}}" information="{{item}}"></student-box>
+    </view>
+    <view class="condition" wx:if="{{item.checked===0}}">
+      <image src="/pics/logo/checking.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+    </view>
+    <view class="condition" wx:if="{{item.checked===2}}">
+        <image src="/pics/logo/pass.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+    </view>
+    <view class="condition" wx:if="{{item.checked===1}}">
+        <image src="/pics/logo/unpass.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+    </view>
+  </view>
+  <view class="container" wx:if="{{teacherInformation.length===0}}" style="color: darkgray;">暂无老师数据，快去发布吧</view>
+</scroll-view>
+<!-- 找学生界面 -->
+<scroll-view class="information-big-box" wx:if="{{isFindTeacher}}" scroll-y>
+  <view class="big-box" wx:for="{{studentInformation}}">  
+    <view class="delete-button" bind:tap="toDeleteStudent" data-infoid="{{item._id}}">
+        <image src="../../pics/button/delete.png" style="width: 60rpx;height: 60rpx;" mode=""/>
+    </view>
+    <view>
+      <student-box bind:tap="toStudentPage" data-infoid="{{item._id}}" information="{{item}}"></student-box>
+    </view>
+    <view class="condition" wx:if="{{item.checked===0}}">
+      <image src="/pics/logo/checking.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+    </view>
+    <view class="condition" wx:if="{{item.checked===2}}">
+        <image src="/pics/logo/pass.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+    </view>
+    <view class="condition" wx:if="{{item.checked===1}}">
+        <image src="/pics/logo/unpass.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+    </view>
+  </view>
+  <view class="big-box" wx:for="{{teacherInformation}}">  
+  <view class="delete-button" bind:tap="toDeleteTeacher" data-infoid="{{item._id}}">
+      <image src="../../pics/button/delete.png" style="width: 60rpx;height: 60rpx;" mode=""/>
+  </view>
+  <view class="condition" wx:if="{{item.checked===0}}">
+      <image src="/pics/logo/checking.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+  </view>
+  <view class="condition" wx:if="{{item.checked===2}}">
+      <image src="/pics/logo/pass.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+  </view>
+  <view class="condition" wx:if="{{item.checked===1}}">
+      <image src="/pics/logo/unpass.png" style="width: 150rpx;height: 150rpx;" mode=""/>
+  </view>
+  <view>
+    <teacher-box bind:tap="toTeacherPage" data-infoid="{{item._id}}" information="{{item}}"></teacher-box>
+  </view>
+</view>
+  <view class="container" wx:if="{{studentInformation.length===0}}" style="color: darkgray;">暂无学生数据，快去发布吧</view>
+</scroll-view>
+
+<view class="setting-switch" bind:tap="toSettings"><image src="/pics/logo/settings.png" style="width: 100rpx;height: 100rpx;z-index: 999;" mode=""/></view>
+
+
+
+
+

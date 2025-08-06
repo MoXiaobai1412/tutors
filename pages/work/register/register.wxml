@@ -1,0 +1,138 @@
+<!--pages/work/register/register.wxml-->
+<view class="topic">
+注册
+</view>
+<!-- 用户名 -->
+<label>
+<view class="text-box">
+  <view class="information-box">昵称</view>
+  <view style="display: flex;">
+    <input model:value="{{nickName}}" maxlength="8" placeholder="点击输入昵称" type="nickname"/>
+  </view>
+</view>
+<view class="text-box" style="font-size:small;">注:昵称用于聊天使用</view>
+<view class="line"></view>
+</label>
+
+<!-- 身份 -->
+<label>
+<view class="text-box">
+  <view class="information-box">身份</view>
+  <radio-group bindchange="">
+    <view style="display: flex;">
+      <radio value="student" model:checked="{{isStudent}}"/>学生/家长<view style="width: 40rpx;"></view>
+      <radio value="teacher" model:checked="{{!isStudent}}"/>家教老师
+    </view>
+  </radio-group>
+</view>
+<view class="text-box" style="font-size:small;">注:身份需间隔90天才可再次选择，请谨慎选择</view>
+<view class="line"></view>
+</label>
+<!-- 地区 -->
+<label>
+<view class="text-box">
+  <view class="information-box">地区</view>
+  <picker mode="region" level="region" model:value="{{region}}">
+    {{region[0]}} {{region[1]}} {{region[2]}}
+  </picker>
+</view>
+<view class="text-box" style="font-size:small;">注:收集此信息是为了匹配学生（老师）</view>
+<view class="line"></view>
+</label>
+<!-- 提交 -->
+<label>
+  <view style="display: flex;margin-top: 10rpx;margin-left: 2.5%;">
+    <view style="width: 15%;"><checkbox model:checked="{{isInformationChecked}}"/></view>
+    
+    <view style="font-size:small">
+      我已阅读
+    </view>
+    <view style="font-size:small;color: blue;border-bottom: blue solid 2rpx;height: 40rpx;" bind:tap="showDeal">《鲤梦同行小程序隐私保护指引》</view>
+    
+  </view>
+  <view class="button-outer-box">
+    <button type="{{isInformationChecked ? 'primary' : 'default'}}" disabled="{{!isInformationChecked}}" bind:tap="toSubmit">提交</button>
+  </view>  
+</label>
+
+
+<view>
+
+<view>查看协议：<switch model:checked="{{showDaily}}" bindchange=""/></view>
+<view wx:if="{{showDaily}}">
+  <view style="font-size: larger;font-weight: 999;text-align: center;">鲤梦同行小程序隐私保护指引</view>
+  <view style="font-size: small;font-weight: 350;">本指引是鲤梦同行小程序开发者 （以下简称“开发者”）为处理你的个人信息而制定。</view>
+  <view style="font-size: medium;font-weight: 800;">1.开发者处理的信息</view>
+  <view style="font-size: smaller;">根据法律规定，开发者仅处理实现小程序功能所必要的信息。</view>
+  <view style="font-size: smaller;">为了筛选就近的家长（或兼职学生），开发者将在获取你的明示同意后，收集你的位置信息。</view>
+  <view style="font-size: medium;font-weight: 800;">2.你的权益</view>
+  <view style="font-size: smaller;">2.1 关于你的个人信息，你可以通过以下方式与开发者联系，行使查阅、复制、更正、删除等法定权利。</view>
+  <view style="font-size: smaller;">2.2 若你在小程序中注册了账号，你可以通过以下方式与开发者联系，申请注销你在小程序中使用的账号。在受理你的申请后，开发者承诺在十五个工作日内完成核查和处理，并按照法律法规要求处理你的相关信息。</view>
+  <view style="font-size: smaller;">电话:19074171028（不建议）</view>
+  <view style="font-size: smaller;">qq:3427289984</view>
+  <view style="font-size: smaller;">邮箱:lxy2383107903@163.com</view>
+  <view style="font-size: medium;font-weight: 800;">3.开发者对信息的存储</view>
+  <view style="font-size: smaller;">3.1 开发者承诺，除法律法规另有规定外，开发者对你的信息的保存期限应当为实现处理目的所必要的最短时间。</view>
+  <view style="font-size: medium;font-weight: 800;">4.信息的使用规则</view>
+  <view style="font-size: smaller;">4.1 开发者将会在本指引所明示的用途内使用收集的信息。</view>
+  <view style="font-size: smaller;">4.2 如开发者使用你的信息超出本指引目的或合理范围，开发者必须在变更使用目的或范围前，再次以小程序内通知方式告知并征得你的明示同意。</view>
+  <view style="font-size: medium;font-weight: 800;">5.信息对外提供</view>
+  <view style="font-size: smaller;">5.1 开发者承诺，不会主动共享或转让你的信息至任何第三方，如存在确需共享或转让时，开发者应当直接征得或确认第三方征得你的单独同意。</view>
+  <view style="font-size: smaller;">5.2 开发者承诺，不会对外公开披露你的信息，如必须公开披露时，开发者应当向你告知公开披露的目的、披露信息的类型及可能涉及的信息，并征得你的单独同意。</view>
+  <view style="font-size: medium;font-weight: 800;">6.你认为开发者未遵守上述约定，或有其他的投诉建议、或未成年人个人信息保护相关问题，可通过以下方式与开发者联系；或者向微信进行投诉。</view>
+  <view style="font-size: smaller;">电话:19074171028（不建议）</view>
+  <view style="font-size: smaller;">qq:3427289984</view>
+  <view style="font-size: smaller;">邮箱:lxy2383107903@163.com</view>
+  <view style="font-size: smaller;width: 100%;text-align: right;">更新日期：2024-09-11</view>
+  <view style="font-size: smaller;width: 100%;text-align: right;">生效日期：2024-09-11</view>
+</view>
+
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 协议 -->
+<!-- 协议背景 -->
+<view wx:if="{{showDeal}}" class="background-box" bind:tap="closeDeal"></view>
+<!-- 协议内容 -->
+<view wx:if="{{showDeal}}" class="deal-box">
+<scroll-view class="deal" scroll-y>
+  <view style="font-size: medium;font-weight: 999;text-align: center;">鲤梦同行小程序隐私保护指引</view>
+  <view style="font-size: small;font-weight: 350;">本指引是鲤梦同行小程序开发者 （以下简称“开发者”）为处理你的个人信息而制定。</view>
+  <view style="font-size: small;font-weight: 800;">1.开发者处理的信息</view>
+  <view style="font-size: smaller;">根据法律规定，开发者仅处理实现小程序功能所必要的信息。</view>
+  <view style="font-size: smaller;">为了筛选就近的家长（或兼职学生），开发者将在获取你的明示同意后，收集你的位置信息。</view>
+  <view style="font-size: small;font-weight: 800;">2.你的权益</view>
+  <view style="font-size: smaller;">2.1 关于你的个人信息，你可以通过以下方式与开发者联系，行使查阅、复制、更正、删除等法定权利。</view>
+  <view style="font-size: smaller;">2.1 关于你的个人信息，你可以通过以下方式与开发者联系，行使查阅、复制、更正、删除等法定权利。</view>
+  <view style="font-size: smaller;">2.2 若你在小程序中注册了账号，你可以通过以下方式与开发者联系，申请注销你在小程序中使用的账号。在受理你的申请后，开发者承诺在十五个工作日内完成核查和处理，并按照法律法规要求处理你的相关信息。</view>
+  <view style="font-size: smaller;">电话:19074171028（不建议）</view>
+  <view style="font-size: smaller;">qq:3427289984</view>
+  <view style="font-size: smaller;">邮箱:lxy2383107903@163.com</view>
+  <view style="font-size: small;font-weight: 800;">3.开发者对信息的存储</view>
+  <view style="font-size: smaller;">3.1 开发者承诺，除法律法规另有规定外，开发者对你的信息的保存期限应当为实现处理目的所必要的最短时间。</view>
+  <view style="font-size: small;font-weight: 800;">4.信息的使用规则</view>
+  <view style="font-size: smaller;">4.1 开发者将会在本指引所明示的用途内使用收集的信息。</view>
+  <view style="font-size: smaller;">4.2 如开发者使用你的信息超出本指引目的或合理范围，开发者必须在变更使用目的或范围前，再次以小程序内通知方式告知并征得你的明示同意。</view>
+  <view style="font-size: small;font-weight: 800;">5.信息对外提供</view>
+  <view style="font-size: smaller;">5.1 开发者承诺，不会主动共享或转让你的信息至任何第三方，如存在确需共享或转让时，开发者应当直接征得或确认第三方征得你的单独同意。</view>
+  <view style="font-size: smaller;">5.2 开发者承诺，不会对外公开披露你的信息，如必须公开披露时，开发者应当向你告知公开披露的目的、披露信息的类型及可能涉及的信息，并征得你的单独同意。</view>
+  <view style="font-size: small;font-weight: 800;">6.你认为开发者未遵守上述约定，或有其他的投诉建议、或未成年人个人信息保护相关问题，可通过以下方式与开发者联系；或者向微信进行投诉。</view>
+  <view style="font-size: smaller;">电话:19074171028（不建议）</view>
+  <view style="font-size: smaller;">qq:3427289984</view>
+  <view style="font-size: smaller;">邮箱:lxy2383107903@163.com</view>
+  <view style="font-size: smaller;width: 100%;text-align: right;">更新日期：2024-09-11</view>
+  <view style="font-size: smaller;width: 100%;text-align: right;">生效日期：2024-09-11</view>
+</scroll-view>
+<view style="text-align: center;margin-top: 1%;font-size: 35rpx;color: darkgray;">•点击任意空白处关闭</view>
+</view>

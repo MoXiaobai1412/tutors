@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "teacher-box":"../../compoents/teacher-box/teacher-box",
+    "student-box":"../../compoents/student-box/student-box"
+  }
+}

@@ -1,0 +1,67 @@
+/* pages/work/student-box/student-box.wxss */
+.outer-box {
+  height: 250rpx;
+  width: 85%;
+  margin-left: 10%;
+  border: #9cfcff 5rpx solid;
+  border-radius: 30rpx;
+  margin-top: 40rpx;
+  background-color: white;
+}
+.logo {
+  position: absolute;
+  top: -30rpx;
+  left: 7rpx;
+}
+.grade {
+  position: absolute;
+  left: 15%;
+  top:5%
+}
+.subject-box {
+  position: absolute;
+  left: 15%;
+  top: 30%;
+  border: darkgrey 2rpx solid;
+  width: 18%;
+  height: 47%;
+  border-radius: 10rpx;
+}
+.subject {
+  width: 100%;
+  height: 45%;
+  border-bottom: 2rpx darkgrey solid;
+  text-align: center;
+}
+.position {
+  position: absolute;
+  left: 15%;
+  bottom: 7%;
+  width: 78%;
+  height: 15%;
+  text-align: right;
+}
+.postDate {
+  position: absolute;
+  left: 15%;
+  bottom: 7%;
+  width: 78%;
+  height: 15%;
+  text-align: left;
+}
+
+.salary {
+  position: absolute;
+  right: 10%;
+  top: 7%;
+  width: 33%;
+  height: 25%;
+  text-align: right;
+}
+.time-outer-box {
+  position: absolute;
+  right: 7%;
+  top: 30%;
+  width: 55%;
+  height: 45%;
+}

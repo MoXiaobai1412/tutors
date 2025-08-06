@@ -1,0 +1,214 @@
+<!--pages/work/teacher-info/teacher-info.wxml-->
+<view class="topic" style="background-color: greenyellow;">
+  <text style="font-size: large;">修改老师信息</text>
+  </view>
+<!-- 自我介绍 -->
+<view class="topic" style="margin-bottom: -15rpx;">
+  <text style="font-size: large;">自我介绍</text>
+</view>
+<!-- 姓名 -->
+<label>
+  <view class="text-box">
+    <text class="information-box">姓名</text>
+    <view class="region-detail" style="width: 290rpx;margin-right: 40rpx;">
+    <input maxlength="15" type="text" model:value="{{teacherName}}" style="width: 290rpx;" placeholder="可以填称呼"/>
+    </view>
+  </view>
+  <view class="line"></view>
+</label>
+<!-- 学校 -->
+<label>
+  <view class="{{isSchoolRight ? 'text-box' : 'text-box-warning'}}" >
+    <text class="information-box">学校</text>
+    <view bind:tap="toChangeSchool">{{teacherSchool}}
+    </view>
+    <view wx:if="{{teacherSchool==='其他'}}" class="region-detail" style="width: 40%;margin-left: 4%;"><input maxlength="100" model:value="{{schoolNamePlus}}" type="text"/></view>
+  </view>
+  <view class="line"></view>
+</label>
+<!-- 学校选择器 -->
+<view wx:if="{{isChangingSchool}}" class="school-choose-box">
+  <scroll-view style="height: 98%;margin-top: 1%;width: 86%;margin-left: 7%;" scroll-y>
+      <view data-schoolname="{{item}}" wx:for="{{allSchool}}" class="school-box" bind:tap="changeSchool">
+        <text space="nbsp">   {{item}}</text>
+      </view>
+  </scroll-view>
+
+
+</view>
+
+
+<!-- 年级 -->
+<label>
+  <view class="{{isGradeRight ? 'text-box' : 'text-box-warning'}}">
+    <text class="information-box">年级</text>
+    <!-- 选择年级等级 -->
+      <view style="padding-right: 100rpx;" bind:tap="toChangeGradeType">
+        <text wx:if="{{gradeType===null}}" style="color: gray;">在读</text>
+        {{grade.type[gradeType]}}
+      </view>
+    <!-- 选择年级 -->
+      <view wx:if="{{gradeType!==null&&gradeType!==4}}" style="padding-right: 100rpx;" bind:tap="toChangeGradeYear">
+        <text wx:if="{{gradeYear===null}}" style="color: gray;">年级</text>{{grade.grades[gradeType][gradeYear]}}
+      </view>
+      <view class="input-box" wx:if="{{gradeType===4}}">
+        <input style="margin-left: 10rpx;margin-right: 10rpx;" type="text" model:value="{{otherGrade}}" placeholder="请说明"/>
+      </view>
+  </view>
+  <view class="line"></view>
+</label>
+<!-- 专业大类 -->
+<label>
+    <view class="{{isGroupRight ? 'text-box' : 'text-box-warning'}}">
+    <text class="information-box">大类</text>  <radio-group bindchange="toChangeGroup">
+    <view class="grade-box">
+      <view class="scool-grade">
+        <radio model:checked="{{groupLG}}" value="理工"/>
+        <text>理工</text>
+      </view>
+      <view class="scool-grade">
+        <radio model:checked="{{groupWS}}" value="文史"/>
+        <text>文史</text>
+      </view>
+      <view class="scool-grade">
+        <radio model:checked="{{groupQT}}" value="其他"/>
+        <text>其他</text>
+      </view>
+    </view>
+  </radio-group>
+  </view>
+  <view class="line"></view>
+</label> 
+<!-- 科目 -->
+<label>
+  <view class="{{isSubjectReady ? 'text-box' : 'text-box-warning'}}">
+    <text class="information-box">科目</text>
+    <checkbox-group bindchange="toChooseSubject">
+    <view style="display: flex;flex-wrap: wrap;width: 550rpx;">
+      <view style="width: 275rpx;margin-top: 10rpx;" wx:for="{{subjects}}">
+        <checkbox model:checked="{{isSubjectChosen[index]}}" value="{{item}}"/>{{item}}
+      </view>
+      <view style="width: 550rpx;display: flex;margin-top: 10rpx;margin-bottom: 10rpx;">
+        <checkbox model:checked="{{hasOtherSubject}}" value="其他"/>其他
+        <view style="margin-left: 60rpx;" class="input-box" wx:if="{{hasOtherSubject}}">
+        <input maxlength="10" style="margin-left: 10rpx;margin-right: 10rpx;" type="text" model:value="{{otherSubject}}" placeholder="更多科目"/>
+        </view>
+      </view>
+    </view>
+    </checkbox-group>
+  </view>
+  <view class="line"></view>
+</label>
+<!-- 地区 -->
+<label>
+  <view class="text-box">
+    <text class="information-box">地区</text>
+    <view style="width: 550rpx;">
+      <picker mode="region" model:value="{{region}}" level="region" custom-item="无">
+        <view style="width: 550rpx;margin-bottom: 20rpx;">
+          <text>{{region[0]}} {{region[1]}} {{region[2]}}</text>
+        </view>
+      </picker> 
+    </view>
+  </view>
+  <view class="line"></view>
+</label>
+<!-- 介绍 -->
+<label>
+  <view class="text-box">
+    <text class="information-box">介绍</text>
+    <view class="detail-box">
+      <scroll-view style="width: 500rpx;height: 200rpx;" scroll-y>
+        <textarea style="width: 500rpx;" model:value="{{teacherDetails}}"/>
+      </scroll-view>
+    </view>
+  </view>
+</label>
+
+<!-- 薪资待遇 -->
+<view class="topic" style="margin-bottom: -15rpx;">
+  <text style="font-size: large;">薪资待遇</text>
+</view>
+<!-- 薪资 -->
+<label>
+    <view class="{{isSalaryReady ? 'text-box' : 'text-box-warning'}}">
+      <text class="information-box">薪资</text>
+      <view style="width: 110rpx;" class="region-detail">
+        <input type="number" style="width: 110rpx;" placeholder="薪资" model:value="{{salary}}"/>
+      </view>
+      <radio-group style="z-index: 50;" bindchange="toChangeSalaryType">
+        <radio model:checked="{{salaryH}}" value="h"/>时薪 <radio model:checked="{{salaryD}}" value="d"/>日薪 <radio model:checked="{{salaryA}}" value="a"/>总薪
+      </radio-group>
+    </view>
+    <view class="line"></view>
+</label>
+<!-- 时间 -->
+<label>
+  <view class="{{isWeekRight&&isTimeRight ? 'text-box' : 'text-box-warning'}}">
+    <text class="information-box">时间</text>
+    <view>
+    <!-- 星期 -->
+      <view style="margin-top: 2rpx;display: flex;margin-bottom: 15rpx;">
+        <view class="week-box"><text>星期</text></view>
+        <view wx:for="{{allNum}}" class="{{weekDay[index] ?'week-day-box-active' :'week-day-box'}}" data-weekid="{{index}}" bind:tap="toChangeWeek"><text>{{item}}</text></view>
+      </view>
+    <!-- 时间段1 -->
+      <view style="margin-top: 2rpx;display: flex;">
+      <picker mode="time" start="06:00" end="22:00" value="{{time0s}}" bindchange="toChangeTime" data-timeid="0s">
+        <view>
+          <view class="picker">{{time0s}}</view>
+        </view>
+      </picker>
+      <view style="margin-left: 80rpx;margin-right: 80rpx;">~</view>
+      <picker mode="time" start="{{time0s}}" end="22:00" value="{{time0e}}" bindchange="toChangeTime" data-timeid="0e">
+        <view>
+          <view class="picker">{{time0e}}</view>
+        </view>
+      </picker>
+      <image src="../../../pics/button/push.png" style="height: 50rpx;width: 50rpx;margin-left: 50rpx;" bind:tap="toPushTime" wx:if="{{timeNum===1}}"/>
+      </view>
+    <!-- 时间段2 -->
+      <view style="margin-top: 40rpx;display: flex;" wx:if="{{timeNum>1}}">
+      <picker mode="time" start="{{time0e}}" end="22:00" value="{{time1s}}" bindchange="toChangeTime" data-timeid="1s">
+        <view>
+          <view class="picker">{{time1s}}</view>
+        </view>
+      </picker>
+      <view style="margin-left: 80rpx;margin-right: 80rpx;">~</view>
+      <picker mode="time" start="{{time1s}}" end="22:00" value="{{time1e}}" bindchange="toChangeTime" data-timeid="1e">
+        <view>
+          <view class="picker">{{time1e}}</view>
+        </view>
+      </picker>
+      <image src="../../../pics/button/push.png" style="height: 50rpx;width: 50rpx;margin-left: 50rpx;" bind:tap="toPushTime" wx:if="{{timeNum===2}}"/>
+      <image src="../../../pics/button/delete.png" style="height: 50rpx;width: 50rpx;margin-left: 20rpx;" bind:tap="toDeleteTime" wx:if="{{timeNum===2}}"/>
+      </view>
+      <!-- 时间段3 -->
+      <view style="margin-top: 40rpx;display: flex;" wx:if="{{timeNum===3}}">
+      <picker mode="time" start="{{time1e}}" end="22:00" value="{{time2s}}" bindchange="toChangeTime" data-timeid="2s">
+        <view>
+          <view class="picker">{{time2s}}</view>
+        </view>
+      </picker>
+      <view style="margin-left: 80rpx;margin-right: 80rpx;">~</view>
+      <picker mode="time" start="{{time2s}}" end="22:00" value="{{time2e}}" bindchange="toChangeTime" data-timeid="2e">
+        <view>
+          <view class="picker">{{time2e}}</view>
+        </view>
+      </picker>
+      <image src="../../../pics/button/delete.png" style="height: 50rpx;width: 50rpx;margin-left: 100rpx;" bind:tap="toDeleteTime" wx:if="{{timeNum===3}}"/>
+      </view>
+    </view>
+  </view>
+  <view class="line"></view>
+</label>
+
+<!-- 提交 -->
+<label>
+  <view style="display: flex;margin-top: 10rpx;margin-left: 2.5%;">
+    <checkbox model:checked="{{isInformationChecked}}"/>确认信息无误并对所填信息负责
+  </view>
+  <view class="button-outer-box">
+    <button type="{{isInformationChecked ? 'primary' : 'default'}}" disabled="{{isInformationChecked ? '' : 't'}}" bind:tap="toSubmit">更新</button>
+  </view>  
+</label>

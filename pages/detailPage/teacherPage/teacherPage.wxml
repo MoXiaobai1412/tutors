@@ -1,0 +1,140 @@
+<!--pages/detailPage/teacherPage/teacherPage.wxml-->
+<!-- 个人信息 -->
+  <!-- 姓名 -->
+  <label>
+    <view class="text-box">
+      <text class="information-box">姓名</text>
+      <text>{{information.name}}</text>
+    </view>
+    <view class="line"></view>
+  </label>
+  <!-- 地区 -->
+  <label>
+    <view class="text-box">
+      <text class="information-box">地区</text>
+      <text>{{information.position[0]}} {{information.position[1]}} {{information.position[2]}}</text>
+    </view>
+    <view class="line"></view>
+  </label>
+  <!-- 学校大类学历 -->
+  <label>
+    <view class="text-box">
+      <text class="information-box">学历</text>
+      <view style="width: 80%;height: auto;"><text>{{information.school}} {{information.group}}类 {{information.grade[0]}}{{information.grade[1]}}</text></view>
+      
+    </view>
+    <view class="line"></view>
+  </label>
+  <!-- 个人介绍 -->
+  <label>
+    <view class="text-box">
+      <text class="information-box">简介</text>
+      <view style="width: 80%;height: auto;"><text style="width: 100;">{{information.introduction}}</text></view>  
+    </view>
+    <view class="line"></view>
+  </label>
+<!-- 工作细节 -->
+  <!-- 工作学科 -->
+  <label>
+    <view class="text-box">
+      <text class="information-box">学科</text>
+      <view style="width: 80%;height: auto;"><text style="width: 100;">{{information.subject}}</text></view>
+    </view>
+    <view class="line"></view>
+  </label>
+  <!-- 工作时间 -->
+  <label>
+    <view class="text-box">
+      <text class="information-box">时间</text>
+      <view style="width: 80%;height: auto;">
+        <!-- 星期 -->
+      <view style="display: flex;">
+        <text space="nbsp">星期</text>
+        <view wx:for="{{information.time.week}}" wx:if="{{item}}"><text>{{allWeek[index]}}</text></view>
+      </view>
+      <!-- 时分 -->
+      <view style="display: flex;flex-wrap: wrap;">
+        <!-- 时段1 -->
+        <view style="width: 50%;">
+          <text>{{(information.time.time.times[0]-(information.time.time.times[0]%60))/60}}:{{information.time.time.times[0]%60}}</text>
+          ~
+          <text>{{(information.time.time.times[1]-(information.time.time.times[1]%60))/60}}:{{information.time.time.times[1]%60}}</text>
+        </view>
+        <!-- 时段2 -->
+        <view style="width: 50%;" wx:if="{{information.time.time.number>1}}">
+          ;
+          <text>{{(information.time.time.times[2]-(information.time.time.times[2]%60))/60}}:{{information.time.time.times[2]%60}}</text>
+          ~
+          <text>{{(information.time.time.times[3]-(information.time.time.times[3]%60))/60}}:{{information.time.time.times[3]%60}}</text>
+        </view>
+        <!-- 时段3 -->
+        <view style="width: 50%;" wx:if="{{information.time.time.number>2}}">
+          <text>{{(information.time.time.times[4]-(information.time.time.times[4]%60))/60}}:{{information.time.time.times[4]%60}}</text>
+          ~
+          <text>{{(information.time.time.times[5]-(information.time.time.times[5]%60))/60}}:{{information.time.time.times[5]%60}}</text>
+        </view>
+      </view>
+      
+      </view>
+    </view>
+    <view class="line"></view>
+  </label>
+  <!-- 薪资要求 -->
+  <label>
+    <view class="text-box">
+      <text class="information-box">薪资</text>
+      <view style="width: 80%;height: auto;">
+        <text style="width: 100;">{{information.salary.amount}}/{{information.salary.type}}</text>
+      </view>
+    </view>
+    <view class="line"></view>
+  </label>
+
+<!-- 收藏按钮 -->
+  <!-- 已收藏 -->
+  <view wx:if="{{isFavor}}" class="favor" bind:tap="outFavor">
+    <image style="width: 100rpx;height: 100rpx;" src="../../../pics/button/favor-active.png" mode=""/>
+  </view>
+  <!-- 未收藏 -->
+  <view wx:else class="favor" bind:tap="inFavor">
+    <image style="width: 100rpx;height: 100rpx;" src="../../../pics/button/favor.png" mode=""/>
+  </view>
+
+
+  <!-- 举报 -->
+  <view class="complaint" bind:tap="showComplaint">
+    <image style="width: 80rpx;height: 80rpx;" src="/pics/button/complaint.png" mode=""/>
+  </view>
+  <!-- 举报页 -->
+  <view class="identify-background" wx:if="{{showComplaintBlock}}" bind:tap="closeComplaint">  
+  </view>
+  <view  class="complaint-box" wx:if="{{showComplaintBlock}}" >
+    <view style="position:absolute;top:1%;right: 5%;font-size: larger;" bind:tap="closeComplaint">X</view>
+    <view style="margin-top: 10%;margin-left: 5%;">请输入举报理由（可空）：</view>
+    <view style="border-bottom: black 2rpx solid;margin-left: 5%;width: 90%;margin-top: 5%;"><input model:value="{{complaint}}" placeholder="举报理由，可不填" type="text"/></view>
+    <view style="width: 40%;height:15%;margin-left: 30%;border: black 2rpx solid;margin-top: 10%;border-radius: 10%;text-align: center;background-color: red;" bind:tap="toComplaint">举报</view>
+  </view>
+
+
+  <!-- 真人检验 -->
+  <view wx:if="{{showIdentifyWindows}}" class="identify-background">  
+  </view>
+  <view wx:if="{{showIdentifyWindows}}"  class="identify-box">
+    <view style="display: flex;width: 90%;height: 80%;">
+      <view style="width: 53%;">
+      <text style="font-size: 32rpx;">右侧校徽属于哪所大学(注意文字和拼音)</text>
+      <view style="border-bottom: darkgray 4rpx solid;width: 70%;margin-left: 5%;">
+        <input type="text" model:value="{{userInput}}"/>
+      </view>
+      <view style="margin-left: 25%;margin-top: 15%;border:solid black 2rpx;width: 50%;text-align: center;background-color: lightcyan;border-radius: 20rpx;" bind:tap="checkRealPeople">提交</view>
+      </view>
+      <view style="width: 47%;">
+        <image src="{{checkFile}}" style="width: 100%;height: 100%;" mode=""/>
+      </view>
+    </view>
+  </view>
+
+<!-- 联系按钮 -->
+<view class="chat" bind:tap="toChat">
+  <image src="/pics/tabBar/message-active.png" style="width: 100rpx;height: 100rpx;" mode=""/>
+</view>

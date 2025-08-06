@@ -1,0 +1,6 @@
+<!--pages/more/more.wxml-->
+<text>pages/more/more.wxml</text>
+<button bind:tap="test">测试</button>
+<page-container show="1" position="top" >
+  <view style="height: 100rpx;width: 100%;"></view>
+</page-container>

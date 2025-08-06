@@ -1,0 +1,28 @@
+/* pages/favor/favor.wxss */
+.information-big-box {
+  position: fixed;
+  left: 0;
+  top:0;
+  height: 94%;
+  width: 100%;
+}
+.identify-switch {
+  padding-left: 1%;
+  position: fixed;
+  left:0;
+  top: 0;
+  z-index: 999;
+  width: 49%;
+  background-color: white;
+  height: 8%;
+}
+.delete-button {
+  position: absolute;
+  height: 0rpx;
+  left: 1%;
+  top: 20%;
+  z-index: 100; 
+}
+.big-box {
+  position: relative;
+}

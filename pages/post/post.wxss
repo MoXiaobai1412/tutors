@@ -1,0 +1,12 @@
+/* pages/post/post.wxss */
+.post-box {
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  width: 60%;
+  height: 150rpx;
+  margin-top: 200rpx;
+  margin-left: 20%;
+  border: darkgrey 5rpx solid;
+  border-radius: 20rpx;
+}

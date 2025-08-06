@@ -1,0 +1,163 @@
+/* pages/work/work.wxss */
+.information-big-box {
+  position: fixed;
+  right: 0%;
+  /* top:13%;  
+  height: 87%; */
+  padding-right: 1%;
+  width: 98%;
+  border-right: darkgrey 5rpx solid;
+  z-index: 80;
+
+}
+
+.salaryControl {
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 6%;
+  left: 5%;
+  border-radius: 45rpx;
+  border: 2rpx black solid;
+  width: 90%;
+  background-color: white;
+  z-index: 899;
+}
+.salaryControl-background{
+  z-index: 800;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 5000rpx;
+  background-color: black;
+  opacity: 50%;
+
+}
+.input-box {
+
+  height: 70rpx;
+  margin-top: 20rpx;
+  width: 24%;
+  border-bottom: darkgrey 2rpx solid;
+}
+.week-box{
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  width: 100rpx;
+  height: 60rpx;
+  background-color: floralwhite;
+}
+.week-day-box {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  width: 60rpx;
+  height: 60rpx;
+  background-color: floralwhite;
+  border: darkgrey 1rpx solid;
+}
+.week-day-box-active {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  width: 60rpx;
+  height: 60rpx;
+  background-color: rgb(184, 255, 251);
+  border: darkgrey 1rpx solid;
+}
+.subjects {
+  white-space: nowrap;
+  display: flex;
+  top:12.6%;
+  height: 150rpx;
+  width: 100%;
+  border-right: darkgrey 5rpx solid;
+  z-index: 700;
+}
+.subject-box {
+  display: inline-block;
+  width: 7%;
+  height: 95%;
+  background-color: floralwhite;
+  align-items: center;
+  text-align: center;
+  writing-mode: vertical-lr;
+  border-right: black 1rpx solid;
+  border-bottom: solid 2rpx black;
+  border-top: 2rpx solid darkgray;
+  
+}
+.subject-box-active {
+  display: inline-block;
+  margin-top: 0.2%;
+  width: 7%;
+  height: 95%;
+  background-color: rgb(184, 255, 251);
+  align-items: center;
+  text-align: center;
+  writing-mode: vertical-lr;
+  border-right: black 1rpx solid;
+  border-bottom: solid 2rpx black;
+  border-top: 2rpx solid darkgray;
+}
+
+.line {
+  width: 95%;
+  height: 2rpx;
+  margin-left: 2.5%;
+  background-color: #d2d2d2;
+}
+.topic {
+  height: 80rpx;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  background-color: rgb(172, 231, 231);
+  border-top: black 2rpx solid;
+}
+.text-box {
+  display: flex;
+  width: 95%;
+  height: auto;
+  margin-left: 2.5%;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+}
+.information-box {
+  width: 150rpx;
+}
+.favor {
+  position: fixed;
+  bottom: 2%;
+  right: 2%; 
+  z-index: 80;
+}
+.identify-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 40%;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.identify-box{
+  position: fixed;
+  top: 35%;
+  left: 10%;
+  width: 80%;
+  height: 30%;
+  z-index: 101;
+  background-color: white;
+  border: black 4rpx solid;
+  border-radius: 40rpx;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+}

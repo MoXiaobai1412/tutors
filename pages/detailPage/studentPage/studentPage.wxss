@@ -1,0 +1,89 @@
+/* pages/detailPage/studentPage/studentPage.wxss */
+.line {
+  width: 95%;
+  height: 2rpx;
+  margin-left: 2.5%;
+  background-color: #d2d2d2;
+}
+.topic {
+  height: 80rpx;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  background-color: rgb(172, 231, 231);
+  border-top: black 2rpx solid;
+}
+.text-box {
+  display: flex;
+  width: 95%;
+  height: auto;
+  margin-left: 2.5%;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+}
+.information-box {
+  width: 150rpx;
+}
+.favor {
+  position: fixed;
+  bottom: 4%;
+  right: 4%;
+  z-index: 80;
+}
+
+.test {
+  position: fixed;
+  bottom: 20%;
+  right: 2%;
+}
+.identify-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 40%;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.identify-box{
+  position: fixed;
+  top: 35%;
+  left: 10%;
+  width: 80%;
+  height: 30%;
+  z-index: 101;
+  background-color: white;
+  border: black 4rpx solid;
+  border-radius: 40rpx;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+}
+.complaint {
+  position: fixed;
+  bottom: 15%;
+  right: 5.5%; 
+  z-index: 80;
+}
+.complaint-box{
+  position: fixed;
+  top: 35%;
+  left: 10%;
+  width: 80%;
+  height: 30%;
+  z-index: 101;
+  background-color: white;
+  border: black 4rpx solid;
+  border-radius: 40rpx;
+  justify-content: center;  
+  align-items: center;
+}
+
+.chat {
+  position: fixed;
+  bottom: 24%;
+  right: 4%;
+  z-index: 80;
+}

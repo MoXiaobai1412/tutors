@@ -1,0 +1,360 @@
+<!--pages/work/work.wxml-->
+<!-- 筛选功能 -->
+<!-- 筛选栏 -->
+<page-container wx:if="{{showSubjectBox}}" z-index="998" show="{{showSubjectBox}}" position="top" duration="400" bind:clickoverlay="toCloseSubjectBox" round>
+<view>
+<view style="display: flex;height: 50rpx;padding-bottom: 20rpx;background-color: floralwhite;">
+  <!-- 地区 -->
+  <view style="padding-top: 0.5%;padding-left: 2%;width: 70%;background-color: floralwhite;height: 100%;">
+    <picker mode="region" level="region" model:value="{{region}}">
+      <view style="font-size: small;display: flex;">
+        <view bind:longpress="regionToAll0" style="text-align: center;margin-right: 10rpx;" data-type="0"  wx:if="{{region[0]}}">{{region[0]}}</view>
+        <view bind:longpress="regionToAll1" style="text-align: center;margin-right: 10rpx;" data-type="1" wx:if="{{region[1]}}">{{region[1]}}</view>
+        <view bind:longpress="regionToAll2" style="text-align: center;margin-right: 10rpx;" data-type="2" wx:if="{{region[2]}}">{{region[2]}}</view>
+      </view>
+    </picker>
+  </view>
+  <!-- 薪资 -->
+  <view style="padding-top: 0.5%;right: 0;padding-right:3%;width: 27%;height:100%;text-align: right;background-color: floralwhite;z-index: 100;" bind:tap="toChangeSalary" bind:longpress="salaryToAll">
+    <text wx:if="{{salary}}" style="font-size: small;">{{salary}}/{{salaryType}}</text>
+    <text wx:else style="font-size: small;">不考虑薪资</text>
+  </view>
+</view>
+</view>
+<!-- 星期 -->
+  <view style="width: 100%;display: flex;background-color: floralwhite;align-items: center;padding-bottom: 20rpx;" bind:longpress="weekToAll">
+    <view class="week-box"><text>星期</text></view>
+    <view wx:for="{{allNum}}" class="{{weekDay[index] ?'week-day-box-active' :'week-day-box'}}" data-weekid="{{index}}" bind:tap="toChangeWeek">
+      <text>{{item}}</text>
+    </view>
+    <view style="padding-top: 1%;color: red;" wx:if="{{weekDay[0]&&weekDay[1]&&weekDay[2]&&weekDay[3]&&weekDay[4]&&weekDay[5]&&weekDay[6]}}">长按清空</view>
+  </view>
+<!-- 学科选择栏 -->
+<scroll-view class="subjects" scroll-x bind:longpress="subjectToAll">
+  <view class="{{chosenSubjects[index]  ?'subject-box-active' : 'subject-box'}}" wx:for="{{subjects}}" data-subjectid="{{index}}" bind:tap="toChangeSubject">
+    <view>
+      <text>{{item}}</text>
+    </view>  
+  </view>
+</scroll-view>
+
+
+<!-- 薪资选择栏 -->
+<view wx:if="{{showSalaryControl}}" class="salaryControl" style="height:230rpx">
+<view style="width: 100%;display: flex;" wx:if="{{salaryType}}">
+  <slider model:value="{{salary}}" style="width: 50%;" min="0" max="{{topSalary}}"/>
+  <view class="input-box">
+    <input type="number" model:value="{{salary}}"/>
+  </view>
+</view>
+<radio-group style="margin-top: 40rpx;margin-left: 40rpx;width: 100%;" bindchange="toChangeSalaryType">
+  <view style="display: flex;">
+    <view style="width: 25%;">
+      <radio checked="t" value="时"/>时薪
+    </view>
+    <view style="width: 25%;">
+      <radio value="日"/>日薪
+    </view>
+    <view style="width: 25%;">
+      <radio value="总"/>总薪
+    </view>
+    <view></view>
+  </view>
+</radio-group>
+</view>
+<view class="salaryControl-background" wx:if="{{showSalaryControl}}"  bind:tap="overChangeSalary"></view>
+
+<!-- 确定键 -->
+<view style="top: 22.8%;width: 100%;height: 100rpx;background-color: floralwhite;display: flex;align-items: center;justify-content: center;border-bottom-left-radius: 40rpx;border-bottom-right-radius: 40rpx;">
+  <view bind:tap="toShowSubjectBox" style="background-color: lightskyblue;width: 200rpx;height: 70rpx;font-size: larger;display: flex;align-items: center;text-align: center;justify-content: center;border: darkgray 2rpx solid;border-radius: 40rpx;margin-right: 100rpx;">筛选</view>
+  <view bind:tap="toCloseSubjectBox" style="background-color:coral;width: 200rpx;height: 70rpx;font-size: larger;display: flex;align-items: center;text-align: center;justify-content: center;border: darkgray 2rpx solid;border-radius: 40rpx;">取消</view>
+</view>
+
+
+
+
+</page-container>
+<!-- 筛选键 -->
+<view bind:tap="toShowSubjectBox" style="display: flex;background-color: lightskyblue;position: fixed;height: 60rpx;width: 150rpx;top: 0%;left:0%;border-bottom-right-radius: 20rpx;border-left: black 2rpx solid;border-right: solid black 2rpx;border-bottom:  black 2rpx solid;opacity: 90%;z-index:700;opacity: 70%;text-align: center;align-items: center;justify-content: center;">
+<image src="/pics/logo/select.png" style="width: 50rpx;height: 50rpx;" mode=""/>
+筛选</view>
+
+
+<!-- 找老师界面 -->
+<scroll-view class="information-big-box" scroll-y wx:if="{{isFindTeacher}}" style="top:0;height:100%">
+  <view wx:for="{{teacherInformation}}">
+    <teacher-box bind:tap="showBlock" bind:longpress="toTeacherPage" data-infoid="{{item._id}}" data-index="{{index}}" information="{{item}}"></teacher-box>
+  </view>
+  <view style="height: 11%;width: 100%;"></view>
+</scroll-view>
+<!-- 找学生界面 -->
+<scroll-view class="information-big-box" wx:if="{{!isFindTeacher}}" scroll-y style="top:0;height:100%">
+  <view wx:for="{{studentInformation}}">
+    <student-box bind:tap="showBlock" bind:longpress="toStudentPage" data-infoid="{{item._id}}" data-index="{{index}}" information="{{item}}"></student-box>
+  </view>
+  <view style="height: 11%;width: 100%;"></view>
+</scroll-view>
+
+
+<!-- 简单展示框 -->
+<page-container wx:if="{{showBlock}}" z-index="998" position="bottom" duration="400" show="{{showBlock}}" bind:clickoverlay="closeBlock" round>
+  <view style="height: 100rpx;text-align: center;font-size: x-large;background-color: white;padding-top: 30rpx;">
+  <text wx:if="{{!isFindTeacher}}">学生信息</text>
+  <text wx:else>老师信息</text>
+  </view>
+  <!-- 学生端，老师信息 -->
+  <scroll-view scroll-y wx:if="{{isFindTeacher}}" style="height: 700rpx;background-color: white;width: 100%;">
+  <view class="line"></view>
+    <!-- 个人信息 -->
+    <!-- 姓名 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">姓名</text>
+        <text>{{nowInformation.name}}</text>
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 学校 -->
+    <label>
+    <view class="text-box">
+      <text class="information-box">学校</text>
+      <text>{{nowInformation.school}}</text>
+    </view>
+    <view class="line"></view>
+    </label>
+    <!-- 地区 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">地区</text>
+        <text>{{nowInformation.position[0]}} {{nowInformation.position[1]}} {{nowInformation.position[2]}}</text>
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 学校大类学历 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">学历</text>
+        <view style="width: 80%;height: auto;"><text>{{nowInformation.group}}类 {{nowInformation.grade[0]}}{{nowInformation.grade[1]}}</text></view>
+        
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 个人介绍 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">简介</text>
+        <view style="width: 80%;height: auto;"><text style="width: 100;">{{nowInformation.introduction}}</text></view>  
+      </view>
+      <view class="line"></view>
+    </label>
+  <!-- 工作细节 -->
+    <!-- 工作学科 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">学科</text>
+        <view style="width: 80%;height: auto;"><text style="width: 100;">{{nowInformation.subject}}</text></view>
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 工作时间 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">时间</text>
+        <view style="width: 80%;height: auto;">
+          <!-- 星期 -->
+        <view style="display: flex;">
+          <text space="nbsp">星期</text>
+          <view wx:for="{{nowInformation.time.week}}" wx:if="{{item}}"><text>{{allNum[index]}}</text></view>
+        </view>
+        <!-- 时分 -->
+        <view style="display: flex;flex-wrap: wrap;">
+          <!-- 时段1 -->
+          <view style="width: 50%;">
+            <text>{{(nowInformation.time.time.times[0]-(nowInformation.time.time.times[0]%60))/60}}:{{nowInformation.time.time.times[0]%60}}</text>
+            ~
+            <text>{{(nowInformation.time.time.times[1]-(nowInformation.time.time.times[1]%60))/60}}:{{nowInformation.time.time.times[1]%60}}</text>
+          </view>
+          <!-- 时段2 -->
+          <view style="width: 50%;" wx:if="{{nowInformation.time.time.number>1}}">
+            ;
+            <text>{{(nowInformation.time.time.times[2]-(nowInformation.time.time.times[2]%60))/60}}:{{nowInformation.time.time.times[2]%60}}</text>
+            ~
+            <text>{{(nowInformation.time.time.times[3]-(nowInformation.time.time.times[3]%60))/60}}:{{nowInformation.time.time.times[3]%60}}</text>
+          </view>
+          <!-- 时段3 -->
+          <view style="width: 50%;" wx:if="{{nowInformation.time.time.number>2}}">
+            <text>{{(nowInformation.time.time.times[4]-(nowInformation.time.time.times[4]%60))/60}}:{{nowInformation.time.time.times[4]%60}}</text>
+            ~
+            <text>{{(nowInformation.time.time.times[5]-(nowInformation.time.time.times[5]%60))/60}}:{{nowInformation.time.time.times[5]%60}}</text>
+          </view>
+        </view>
+        
+        </view>
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 薪资要求 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">薪资</text>
+        <view style="width: 80%;height: auto;">
+          <text style="width: 100;">{{nowInformation.salary.amount}}/{{nowInformation.salary.type}}</text>
+        </view>
+      </view>
+      <view class="line"></view>
+    </label>
+    <button bind:tap="detailToTeacherPage">点击查看更多信息</button>
+  </scroll-view>
+  <!-- 老师端，学生信息 -->
+  <scroll-view scroll-y wx:else style="height: 700rpx;background-color: white;width: 100%;">
+  <!-- 自我介绍 -->
+  <view class="topic" style="margin-bottom: -15rpx;">
+    <text style="font-size: large;">工作概况</text>
+  </view>
+    <!-- 姓名 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">姓名</text>
+        <text>{{nowInformation.name}}</text>
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 年级 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">年级</text>
+        <view style="width: 80%;height: auto;"><text>{{nowInformation.grade[0]}}{{nowInformation.grade[1]}}</text></view>
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 补习学科 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">学科</text>
+        <view style="width: 80%;height: auto;"><text style="width: 100;">{{nowInformation.subject}}</text></view>
+      </view>
+      <view class="line"></view>
+    </label>
+
+    <!-- 时间 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">时间</text>
+        <view style="width: 80%;height: auto;">
+          <!-- 日期 -->
+          <view style="display: flex;">
+            {{nowInformation.time.date[0]}}~{{nowInformation.time.date[1]}}
+          </view>
+          <!-- 星期 -->
+        <view style="display: flex;">
+          <text space="nbsp">星期</text>
+          <view wx:for="{{nowInformation.time.week}}" wx:if="{{item}}"><text>{{allNum[index]}}</text></view>
+        </view>
+        <!-- 时分 -->
+        <view style="display: flex;flex-wrap: wrap;">
+          <!-- 时段1 -->
+          <view style="width: 50%;">
+            <text>{{(nowInformation.time.time.times[0]-(nowInformation.time.time.times[0]%60))/60}}:{{nowInformation.time.time.times[0]%60}}</text>
+            ~
+            <text>{{(nowInformation.time.time.times[1]-(nowInformation.time.time.times[1]%60))/60}}:{{nowInformation.time.time.times[1]%60}}</text>
+          </view>
+          <!-- 时段2 -->
+          <view style="width: 50%;" wx:if="{{nowInformation.time.time.number>1}}">
+            ;
+            <text>{{(nowInformation.time.time.times[2]-(nowInformation.time.time.times[2]%60))/60}}:{{nowInformation.time.time.times[2]%60}}</text>
+            ~
+            <text>{{(nowInformation.time.time.times[3]-(nowInformation.time.time.times[3]%60))/60}}:{{nowInformation.time.time.times[3]%60}}</text>
+          </view>
+        </view>
+        
+        </view>
+      </view>
+      <view class="line"></view>
+    </label>
+
+    <!-- 地区 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">地区</text>
+        <text>{{nowInformation.position[0]}} {{nowInformation.position[1]}} {{nowInformation.position[2]}} {{nowInformation.position[3]}} {{nowInformation.position[4]}}</text>
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 介绍 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">简介</text>
+        <view style="width: 80%;height: auto;"><text style="width: 100;">{{nowInformation.studentDetail}}</text></view>  
+      </view>
+      <view class="line"></view>
+    </label>
+
+  <!-- 薪资待遇 -->
+  <view class="topic" style="margin-bottom: -15rpx;">
+    <text style="font-size: large;">薪资待遇</text>
+    <text wx:if="{{nowInformation.salary.faceTalk}}" style="color: red;">（面议）</text>
+  </view>
+  <view wx:if="{{!nowInformation.salary.faceTalk}}">
+    <!-- 薪资 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">薪资</text>
+        <view style="width: 80%;height: auto;">
+          <text style="width: 100;">{{nowInformation.salary.amount}}/{{nowInformation.salary.type}}</text>
+        </view>
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 待遇 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">待遇</text>
+        <view style="width: 80%;height: auto;display: flex;flex-wrap: wrap;">
+          <text wx:if="{{nowInformation.salary.treatment.hasCar}}">车接车送；</text><text style="width: 60%;" wx:if="{{nowInformation.salary.treatment.hasSubwayTip}}">地铁报销；</text><text wx:if="{{nowInformation.salary.treatment.hasOtherBenefit}}">其他待遇：</text>
+          <text wx:if="{{nowInformation.salary.otherBenefit}}">{{nowInformation.salary.otherBenefit}}</text>
+          
+        </view>
+      </view>
+      <view class="line"></view>
+    </label>
+  </view>
+
+  <!-- 老师要求 -->
+  <view class="topic" style="margin-bottom: -15rpx;">
+    <text style="font-size: large;">教学要求</text>
+  </view>
+    <!-- 性别 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">性别</text>
+        <view style="width: 80%;height: auto;"><text style="width: 100;">{{nowInformation.teacherGender}}</text></view>  
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 学历 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">学历</text>
+        <view style="width: 80%;height: auto;"><text style="width: 100;">{{nowInformation.teacherSchool}} {{nowInformation.teacherAcademic}}</text></view>  
+      </view>
+      <view class="line"></view>
+    </label>
+    <!-- 经验 -->
+    <label>
+      <view class="text-box">
+        <text class="information-box">经验</text>
+        <view style="width: 80%;height: auto;"><text style="width: 100;">{{nowInformation.teacherExperience}}</text></view>  
+      </view>
+    </label>
+    <button bind:tap="detailToStudentPage">点击查看更多信息</button>
+  </scroll-view>
+</page-container>
+
+
+<!-- 页码 -->
+<view style="display: flex;width: 100%;justify-content: center;margin-top: 30rpx;position: fixed;bottom: 2%;z-index: 800;">
+  <view style="background-color: gainsboro;border-radius: 10rpx;width: 150rpx;height: 55rpx;text-align: center;" bind:tap="pageUp">上一页</view>
+  <view style="margin-left: 20rpx;margin-right: 20rpx;">第{{pageSize+1}}页</view>
+  <view style="background-color: gainsboro;border-radius: 10rpx;width: 150rpx;height: 55rpx;text-align: center;" bind:tap="pageDown">下一页</view>
+</view>
+

@@ -1,0 +1,35 @@
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+.log-item {
+  margin-top: 20rpx;
+  text-align: center;
+}
+.log-item:last-child {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.line {
+  width: 95%;
+  margin-left: 2.5%;
+  height: 2rpx;
+  background-color: darkgrey;
+}
+.logo {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 2%;
+
+}
+.navigate-box {
+  display: flex;
+  font-size: medium;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 7%;
+}
